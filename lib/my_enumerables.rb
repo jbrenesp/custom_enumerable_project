@@ -1,5 +1,28 @@
 module Enumerable
   # Your code goes here
+  def my_select
+    result = []
+    my_each do |i|
+      if yield( i )
+        result << i
+      end
+    end
+    result
+  end
+
+  def my_all?
+    my_each do |i|
+      return false unless yield(i)
+    end
+    true
+  end
+
+  def my_any?
+    my_each do |i|
+      return true if yield(i) 
+    end
+    false
+  end 
 end
 
 # You will first have to define my_each
