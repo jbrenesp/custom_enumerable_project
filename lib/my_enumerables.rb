@@ -23,6 +23,35 @@ module Enumerable
     end
     false
   end 
+
+  def my_none?
+    my_each do |i|
+      return false if yield(i)
+    end
+    true
+  end
+  
+  def my_count
+    count = 0
+    my_each do |i|
+      if block_given?
+        count += 1 if yield(i)
+      else
+        count += 1
+      end
+    end
+    count
+  end
+
+  def my_map
+    result = []
+    my_each do |i|
+      if block_given?
+        result << yield(i)
+      end
+    end
+    result
+  end
 end
 
 # You will first have to define my_each
@@ -44,4 +73,3 @@ class Array
     self
   end
 end
-
